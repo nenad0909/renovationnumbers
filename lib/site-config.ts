@@ -1,12 +1,14 @@
 export const siteConfig = {
-  name: "Home Cost Numbers",
+  name: "Renovation Numbers",
+  copyrightHolder: "Nenad Milicevic",
   futureDomain: "RenovationNumbers.com",
   url: "https://renovationnumbers.com",
   description:
     "Free home improvement cost calculators for remodeling, repairs, maintenance, and renovation budgeting.",
-  contactEmail: "contact@homecostnumbers.com",
+  contactEmail: "i@inenad.com",
   ads: {
-    showPlaceholders: true
+    showPlaceholders: true,
+    adsensePublisherId: "ca-pub-5997243351653069"
   },
   nav: [
     { label: "Home", href: "/" },
@@ -18,3 +20,8 @@ export const siteConfig = {
     { label: "About", href: "/about" }
   ]
 };
+
+export function getCopyrightYear(): number {
+  return new Date().getFullYear();
+}
+

@@ -4,8 +4,25 @@ type FAQ = {
 };
 
 export function FAQSection({ faqs }: { faqs: FAQ[] }) {
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer
+      }
+    }))
+  };
+
   return (
     <section className="mx-auto max-w-4xl">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
       <div className="mb-8 text-center">
         <span className="section-eyebrow">Need to know</span>
         <h2 className="mt-3 text-3xl font-black uppercase tracking-tight text-white md:text-4xl" style={{ fontFamily: "var(--font-heading)" }}>Frequently Asked Questions</h2>

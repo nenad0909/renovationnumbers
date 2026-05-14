@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { SiteLogo } from "@/components/SiteLogo";
 import { calculatorDefinitions } from "@/lib/calculators";
-import { siteConfig } from "@/lib/site-config";
+import { getCopyrightYear, siteConfig } from "@/lib/site-config";
 
 export function Footer() {
   return (
@@ -16,7 +16,7 @@ export function Footer() {
               Free planning calculators for homeowners. Understand costs before starting your project.
             </p>
             <p className="mt-5 text-xs text-[#555]">
-              © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+              © {getCopyrightYear()} {siteConfig.copyrightHolder}. All rights reserved.
             </p>
           </div>
 

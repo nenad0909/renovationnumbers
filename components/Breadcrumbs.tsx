@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { siteConfig } from "@/lib/site-config";
 
 type Breadcrumb = {
   label: string;
@@ -6,8 +7,24 @@ type Breadcrumb = {
 };
 
 export function Breadcrumbs({ items }: { items: Breadcrumb[] }) {
+  const allItems: Breadcrumb[] = [{ label: "Home", href: "/" }, ...items];
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: allItems.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.label,
+      ...(item.href ? { item: `${siteConfig.url}${item.href}` } : {})
+    }))
+  };
+
   return (
     <nav aria-label="Breadcrumb" className="text-sm text-[#A1A1A1]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <ol className="flex flex-wrap items-center gap-1.5">
         <li>
           <Link className="px-1 transition hover:text-[#61F3BB]" href="/">
