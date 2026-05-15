@@ -32,11 +32,16 @@ export function Header() {
               <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
             </svg>
           </Link>
-          <details className="relative md:hidden">
+          <details className="group relative md:hidden">
             <summary className="grid h-10 w-10 cursor-pointer list-none place-items-center border border-white/15 bg-white/5 text-white transition hover:border-[#61F3BB]/40 hover:text-[#61F3BB]">
               <span className="sr-only">Open menu</span>
-              <svg aria-hidden="true" className="h-5 w-5" fill="none" viewBox="0 0 24 24">
+              {/* hamburger — visible when closed */}
+              <svg aria-hidden="true" className="h-5 w-5 group-open:hidden" fill="none" viewBox="0 0 24 24">
                 <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" strokeLinecap="round" strokeWidth="2" />
+              </svg>
+              {/* X — visible when open */}
+              <svg aria-hidden="true" className="hidden h-5 w-5 group-open:block" fill="none" viewBox="0 0 24 24">
+                <path d="M6 18 18 6M6 6l12 12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
               </svg>
             </summary>
             <div className="absolute right-0 top-12 w-72 border border-white/10 bg-[#0a0a0a] p-3 shadow-soft backdrop-blur">
