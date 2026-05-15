@@ -54,17 +54,17 @@ export default function HomePage() {
             >
               Free Home Improvement Cost Calculators
             </h1>
-            <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-[#A1A1A1] sm:text-xl">
+            <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-black sm:text-xl sm:text-[#A1A1A1]">
               Estimate renovation, repair, and upgrade costs before you start your next home project.
             </p>
-            <div className="mt-9 flex flex-wrap gap-3">
-              <Link className="btn-primary" href="/calculators">
+            <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
+              <Link className="btn-primary justify-center" href="/calculators">
                 View Calculators
                 <svg aria-hidden="true" className="h-4 w-4" fill="none" viewBox="0 0 24 24">
                   <path d="M5 12h14m-6-6 6 6-6 6" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" />
                 </svg>
               </Link>
-              <Link className="btn-orange" href="/home-renovation-budget-calculator">
+              <Link className="btn-orange justify-center" href="/home-renovation-budget-calculator">
                 Start with Renovation Budget
               </Link>
             </div>
