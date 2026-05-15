@@ -101,6 +101,23 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <link rel="preload" as="image" href="/hero.png" fetchPriority="high" />
         <link rel="dns-prefetch" href="https://pagead2.googlesyndication.com" />
         <link rel="preconnect" href="https://pagead2.googlesyndication.com" crossOrigin="anonymous" />
+        <Script
+          id="gtag-js"
+          src="https://www.googletagmanager.com/gtag/js?id=G-MVVRFK1F3Q"
+          strategy="afterInteractive"
+        />
+        <Script
+          id="gtag-config"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MVVRFK1F3Q');
+            `
+          }}
+        />
       </head>
       <body className="min-h-screen bg-black font-sans text-white antialiased">
         <a className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:bg-[#61F3BB] focus:px-4 focus:py-2 focus:text-sm focus:font-bold focus:text-black" href="#main-content">
