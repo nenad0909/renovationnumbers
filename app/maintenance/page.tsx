@@ -4,7 +4,7 @@ import { calculatorDefinitions, getCalculatorsByCategory } from "@/lib/calculato
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Repair and Maintenance Cost Calculators | Home Cost Numbers",
+  title: "Repair and Maintenance Cost Calculators",
   description: "Plan maintenance and repair budgets with painting, flooring, HVAC, roofing, and renovation budget calculators.",
   path: "/maintenance"
 });

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { SiteLogo } from "@/components/SiteLogo";
-import { calculatorDefinitions } from "@/lib/calculators";
+import { calculatorDefinitions, categories } from "@/lib/calculators";
 import { getCopyrightYear, siteConfig } from "@/lib/site-config";
 
 export function Footer() {
@@ -23,7 +23,7 @@ export function Footer() {
           <div>
             <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-[#61F3BB]">Calculators</h3>
             <ul className="mt-4 space-y-2">
-              {calculatorDefinitions.slice(0, 8).map((calculator) => (
+              {calculatorDefinitions.map((calculator) => (
                 <li key={calculator.slug}>
                   <Link
                     className="text-sm text-[#A1A1A1] transition hover:text-[#61F3BB]"
@@ -37,7 +37,20 @@ export function Footer() {
           </div>
 
           <div>
-            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-[#61F3BB]">Info</h3>
+            <h3 className="text-xs font-bold uppercase tracking-[0.14em] text-[#61F3BB]">Explore</h3>
+            <ul className="mt-4 space-y-2">
+              <li>
+                <Link className="text-sm text-[#A1A1A1] transition hover:text-[#61F3BB]" href="/calculators">All Calculators</Link>
+              </li>
+              {categories.map((category) => (
+                <li key={category.name}>
+                  <Link className="text-sm text-[#A1A1A1] transition hover:text-[#61F3BB]" href={category.href}>
+                    {category.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+            <h3 className="mt-8 text-xs font-bold uppercase tracking-[0.14em] text-[#61F3BB]">Info</h3>
             <ul className="mt-4 space-y-2">
               <li>
                 <Link className="text-sm text-[#A1A1A1] transition hover:text-[#61F3BB]" href="/about">About</Link>

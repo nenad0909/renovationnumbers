@@ -4,7 +4,7 @@ import { getCalculatorsByCategory } from "@/lib/calculators";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Remodeling Cost Calculators | Home Cost Numbers",
+  title: "Remodeling Cost Calculators",
   description: "Estimate kitchen, bathroom, flooring, painting, and renovation budget costs with free remodeling calculators.",
   path: "/remodeling"
 });

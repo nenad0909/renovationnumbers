@@ -6,17 +6,22 @@ type Breadcrumb = {
   href?: string;
 };
 
-export function Breadcrumbs({ items }: { items: Breadcrumb[] }) {
+export function Breadcrumbs({ items, currentPath }: { items: Breadcrumb[]; currentPath?: string }) {
   const allItems: Breadcrumb[] = [{ label: "Home", href: "/" }, ...items];
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: allItems.map((item, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      name: item.label,
-      ...(item.href ? { item: `${siteConfig.url}${item.href}` } : {})
-    }))
+    itemListElement: allItems.map((item, index) => {
+      const isLast = index === allItems.length - 1;
+      const itemPath = item.href ?? (isLast ? currentPath : undefined);
+
+      return {
+        "@type": "ListItem",
+        position: index + 1,
+        name: item.label,
+        ...(itemPath ? { item: `${siteConfig.url}${itemPath}` } : {})
+      };
+    })
   };
 
   return (

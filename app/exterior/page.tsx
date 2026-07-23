@@ -4,7 +4,7 @@ import { calculatorDefinitions, getCalculatorsByCategory } from "@/lib/calculato
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Exterior Project Cost Calculators | Home Cost Numbers",
+  title: "Exterior Project Cost Calculators",
   description: "Estimate roofing, fence, deck, exterior painting, and solar project costs with free home improvement calculators.",
   path: "/exterior"
 });

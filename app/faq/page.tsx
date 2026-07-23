@@ -3,7 +3,7 @@ import { FAQSection } from "@/components/FAQSection";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Home Improvement Cost Calculator FAQ | Home Cost Numbers",
+  title: "Home Improvement Cost Calculator FAQ",
   description: "Answers to common questions about renovation estimates, contractor quotes, contingencies, and local pricing.",
   path: "/faq"
 });

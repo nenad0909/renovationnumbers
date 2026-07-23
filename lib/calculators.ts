@@ -700,7 +700,7 @@ export const categories = [
   {
     name: "Energy & Efficiency",
     description: "HVAC and solar calculators for efficiency decisions.",
-    href: "/calculators#energy-efficiency"
+    href: "/calculators#energy-and-efficiency"
   },
   {
     name: "Budget Planning",

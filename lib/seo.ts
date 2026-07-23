@@ -20,6 +20,12 @@ const DEFAULT_KEYWORDS = [
   "home renovation calculator"
 ];
 
+export function pageTitle(title: string) {
+  const brandSuffix = ` | ${siteConfig.name}`;
+  const withoutBrand = title.endsWith(brandSuffix) ? title.slice(0, -brandSuffix.length) : title;
+  return withoutBrand.split("|")[0]?.trim() ?? withoutBrand.trim();
+}
+
 export function buildMetadata({
   title,
   description,
@@ -32,10 +38,12 @@ export function buildMetadata({
   const canonical = `${siteConfig.url}${path}`;
   const ogImageUrl = `${siteConfig.url}/og-image.jpg`;
   const mergedKeywords = Array.from(new Set([...(keywords ?? []), ...DEFAULT_KEYWORDS]));
+  const normalizedTitle = pageTitle(title);
+  const brandedTitle = `${normalizedTitle} | ${siteConfig.name}`;
 
   return {
     metadataBase: new URL(siteConfig.url),
-    title,
+    title: normalizedTitle,
     description,
     keywords: mergedKeywords,
     applicationName: siteConfig.name,
@@ -57,7 +65,7 @@ export function buildMetadata({
       }
     },
     openGraph: {
-      title,
+      title: brandedTitle,
       description,
       url: canonical,
       siteName: siteConfig.name,
@@ -76,10 +84,31 @@ export function buildMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title,
+      title: brandedTitle,
       description,
       images: [ogImageUrl]
     },
     category: "home improvement"
   };
+}
+
+export function categoryAnchor(name: string) {
+  return name.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and");
+}
+
+export function categoryHubHref(category: string) {
+  switch (category) {
+    case "Interior Remodeling":
+      return "/remodeling";
+    case "Exterior Projects":
+      return "/exterior";
+    case "Repairs & Maintenance":
+      return "/maintenance";
+    case "Energy & Efficiency":
+      return `/calculators#${categoryAnchor(category)}`;
+    case "Budget Planning":
+      return "/home-renovation-budget-calculator";
+    default:
+      return "/calculators";
+  }
 }

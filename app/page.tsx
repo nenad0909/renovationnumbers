@@ -2,7 +2,20 @@ import Link from "next/link";
 import { CalculatorCard } from "@/components/CalculatorCard";
 import { DisclaimerBox } from "@/components/DisclaimerBox";
 import { FAQSection } from "@/components/FAQSection";
+import { buildMetadata } from "@/lib/seo";
 import { calculatorDefinitions, categories } from "@/lib/calculators";
+
+export const metadata = buildMetadata({
+  title: "Free Home Improvement Cost Calculators",
+  description:
+    "Estimate remodeling, repair, and renovation costs with free home improvement calculators for kitchens, bathrooms, roofing, flooring, painting, HVAC, fences, decks, solar, and more.",
+  path: "/",
+  keywords: [
+    "free home improvement calculators",
+    "renovation cost calculator",
+    "remodel estimate tool"
+  ]
+});
 
 const faqs = [
   {
@@ -55,7 +68,7 @@ export default function HomePage() {
               Free Home Improvement Cost Calculators
             </h1>
             <p className="mt-6 max-w-xl text-pretty text-lg leading-8 text-black sm:text-xl sm:text-[#A1A1A1]">
-              Estimate renovation, repair, and upgrade costs before you start your next home project.
+              Renovation Numbers helps homeowners estimate renovation, repair, and upgrade costs before requesting contractor bids.
             </p>
             <div className="mt-9 grid grid-cols-2 gap-3 sm:flex sm:flex-wrap">
               <Link className="btn-primary justify-center" href="/calculators">

@@ -3,8 +3,8 @@ import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Contact Home Cost Numbers",
-  description: "Contact Home Cost Numbers about calculator feedback, site questions, or general inquiries.",
+  title: "Contact",
+  description: "Contact Renovation Numbers about calculator feedback, site questions, or general inquiries.",
   path: "/contact"
 });
 

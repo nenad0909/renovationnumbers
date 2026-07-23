@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import { CalculatorLayout } from "@/components/CalculatorLayout";
+import { getCalculatorAnswerLead, getCalculatorFaqs } from "@/lib/calculator-seo";
 import { calculatorDefinitions, getCalculator } from "@/lib/calculators";
 import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
@@ -23,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
   }
 
   return buildMetadata({
-    title: calculator.title,
+    title: calculator.name,
     description: calculator.metaDescription,
     path: `/${calculator.slug}`,
     keywords: [
@@ -45,6 +46,8 @@ export default async function CalculatorPage({ params }: PageProps) {
   }
 
   const pageUrl = `${siteConfig.url}/${calculator.slug}`;
+  const answerLead = getCalculatorAnswerLead(calculator);
+  const faqs = getCalculatorFaqs(calculator);
 
   const webAppJsonLd = {
     "@context": "https://schema.org",
@@ -78,8 +81,8 @@ export default async function CalculatorPage({ params }: PageProps) {
   const howToJsonLd = {
     "@context": "https://schema.org",
     "@type": "HowTo",
-    name: `How to use the ${calculator.name}`,
-    description: calculator.intro,
+    name: `How to estimate ${calculator.shortName.toLowerCase()} costs`,
+    description: answerLead,
     inLanguage: "en-US",
     url: pageUrl,
     totalTime: "PT2M",
@@ -92,23 +95,39 @@ export default async function CalculatorPage({ params }: PageProps) {
       {
         "@type": "HowToStep",
         position: 1,
-        name: "Enter project details",
-        text: "Fill in your project size, materials, and other key inputs in the calculator form."
+        name: `Enter your ${calculator.shortName.toLowerCase()} project details`,
+        text: `Adjust the default ${calculator.shortName.toLowerCase()} inputs such as size, materials, labor, and optional allowances.`
       },
       {
         "@type": "HowToStep",
         position: 2,
-        name: "Review the estimated range",
-        text: "Review the low, average, and high planning estimates plus the cost breakdown."
+        name: "Review the planning range",
+        text: "Compare the low, average, and high estimate plus the cost breakdown to understand the main budget drivers."
       },
       {
         "@type": "HowToStep",
         position: 3,
-        name: "Compare with contractor bids",
-        text: "Use the estimate as a baseline when requesting and comparing local contractor quotes."
+        name: "Use the estimate for contractor quotes",
+        text: calculator.content.example
       }
     ]
   };
+
+  const faqJsonLd =
+    faqs.length > 0
+      ? {
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: faqs.map((faq) => ({
+            "@type": "Question",
+            name: faq.question,
+            acceptedAnswer: {
+              "@type": "Answer",
+              text: faq.answer
+            }
+          }))
+        }
+      : null;
 
   return (
     <>
@@ -120,6 +139,12 @@ export default async function CalculatorPage({ params }: PageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
       />
+      {faqJsonLd ? (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
+      ) : null}
       <CalculatorLayout calculator={calculator} />
     </>
   );

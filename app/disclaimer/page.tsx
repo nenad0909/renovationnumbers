@@ -2,7 +2,7 @@ import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { buildMetadata } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Disclaimer | Home Cost Numbers",
+  title: "Disclaimer",
   description: "Important disclaimer explaining that home improvement cost estimates are general planning tools and not professional advice.",
   path: "/disclaimer"
 });

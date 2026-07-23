@@ -2,18 +2,14 @@ import Link from "next/link";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { CalculatorCard } from "@/components/CalculatorCard";
 import { calculatorDefinitions, categories, getCalculatorsByCategory } from "@/lib/calculators";
-import { buildMetadata } from "@/lib/seo";
+import { buildMetadata, categoryAnchor } from "@/lib/seo";
 
 export const metadata = buildMetadata({
-  title: "Home Improvement Calculators | Home Cost Numbers",
+  title: "Home Improvement Calculators",
   description:
     "Browse free remodeling, repair, exterior, energy, and renovation budget calculators for common home improvement projects.",
   path: "/calculators"
 });
-
-function categoryAnchor(name: string) {
-  return name.toLowerCase().replaceAll(" ", "-").replaceAll("&", "and");
-}
 
 export default function CalculatorsPage() {
   return (

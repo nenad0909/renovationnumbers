@@ -3,8 +3,8 @@ import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Terms of Use | Home Cost Numbers",
-  description: "Terms of use for Home Cost Numbers, including informational estimates, user responsibility, and limitations.",
+  title: "Terms of Use",
+  description: "Terms of use for Renovation Numbers, including informational estimates, user responsibility, and limitations.",
   path: "/terms-of-use"
 });
 

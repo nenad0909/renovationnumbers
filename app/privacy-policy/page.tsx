@@ -3,8 +3,8 @@ import { buildMetadata } from "@/lib/seo";
 import { siteConfig } from "@/lib/site-config";
 
 export const metadata = buildMetadata({
-  title: "Privacy Policy | Home Cost Numbers",
-  description: "Privacy policy template for Home Cost Numbers, including cookies, analytics, advertising partners, and contact information.",
+  title: "Privacy Policy",
+  description: "Privacy policy for Renovation Numbers, including cookies, analytics, advertising partners, and contact information.",
   path: "/privacy-policy"
 });
 

@@ -1,9 +1,13 @@
+import Link from "next/link";
 import { Breadcrumbs } from "./Breadcrumbs";
 import { CalculatorForm } from "./CalculatorForm";
 import { DisclaimerBox } from "./DisclaimerBox";
+import { FAQSection } from "./FAQSection";
 import { RelatedCalculators } from "./RelatedCalculators";
-import type { CalculatorDefinition } from "@/lib/types";
+import { getCalculatorAnswerLead, getCalculatorFaqs } from "@/lib/calculator-seo";
 import { getRelatedCalculators } from "@/lib/calculators";
+import { categoryHubHref } from "@/lib/seo";
+import type { CalculatorDefinition } from "@/lib/types";
 
 function ContentList({ title, items }: { title: string; items: string[] }) {
   return (
@@ -25,6 +29,9 @@ function ContentList({ title, items }: { title: string; items: string[] }) {
 
 export function CalculatorLayout({ calculator }: { calculator: CalculatorDefinition }) {
   const related = getRelatedCalculators(calculator.related);
+  const answerLead = getCalculatorAnswerLead(calculator);
+  const faqs = getCalculatorFaqs(calculator);
+  const categoryHref = categoryHubHref(calculator.category);
 
   return (
     <main className="bg-black">
@@ -36,13 +43,22 @@ export function CalculatorLayout({ calculator }: { calculator: CalculatorDefinit
           style={{ backgroundImage: "radial-gradient(closest-side, rgba(97,243,187,0.25), transparent)" }}
         />
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 md:py-16 lg:px-8">
-          <Breadcrumbs items={[{ label: "Calculators", href: "/calculators" }, { label: calculator.name }]} />
+          <Breadcrumbs
+            currentPath={`/${calculator.slug}`}
+            items={[{ label: "Calculators", href: "/calculators" }, { label: calculator.name }]}
+          />
           <div className="mt-8 max-w-3xl animate-fade-up">
-            <span className="pill">{calculator.category}</span>
+            <div className="flex flex-wrap items-center gap-3">
+              <span className="pill">{calculator.category}</span>
+              <Link className="text-sm font-semibold text-[#61F3BB] transition hover:text-white" href={categoryHref}>
+                Browse {calculator.category}
+              </Link>
+            </div>
             <h1 className="mt-4 text-4xl font-black uppercase tracking-tight text-white md:text-5xl lg:text-6xl" style={{ fontFamily: "var(--font-heading)" }}>
               {calculator.name}
             </h1>
-            <p className="mt-5 max-w-3xl text-lg leading-8 text-[#A1A1A1]">{calculator.intro}</p>
+            <p className="mt-5 max-w-3xl text-lg font-medium leading-8 text-white">{answerLead}</p>
+            <p className="mt-4 max-w-3xl text-base leading-8 text-[#A1A1A1]">{calculator.intro}</p>
             <div className="mt-6 flex flex-wrap items-center gap-3 text-sm text-[#A1A1A1]">
               <span className="inline-flex items-center gap-2 border border-white/10 bg-white/5 px-3 py-1.5 font-semibold text-white">
                 <svg className="h-3.5 w-3.5 text-[#61F3BB]" fill="none" viewBox="0 0 24 24">
@@ -84,6 +100,7 @@ export function CalculatorLayout({ calculator }: { calculator: CalculatorDefinit
               <p className="mt-4 text-sm leading-7 text-[#A1A1A1] md:text-base">{calculator.content.example}</p>
             </section>
           </div>
+          {faqs.length > 0 ? <FAQSection faqs={faqs} /> : null}
           <RelatedCalculators calculators={related} />
           <DisclaimerBox />
         </div>

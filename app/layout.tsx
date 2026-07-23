@@ -29,7 +29,7 @@ const archivoBlack = Archivo_Black({
 });
 
 const baseMetadata = buildMetadata({
-  title: "Free Home Improvement Cost Calculators | Renovation Numbers",
+  title: "Free Home Improvement Cost Calculators",
   description:
     "Estimate remodeling, repair, and renovation costs with free home improvement calculators for kitchens, bathrooms, roofing, flooring, painting, HVAC, fences, decks, solar, and more."
 });
@@ -37,7 +37,7 @@ const baseMetadata = buildMetadata({
 export const metadata: Metadata = {
   ...baseMetadata,
   title: {
-    default: "Free Home Improvement Cost Calculators | Renovation Numbers",
+    default: `Free Home Improvement Cost Calculators | ${siteConfig.name}`,
     template: `%s | ${siteConfig.name}`
   },
   manifest: "/site.webmanifest",
@@ -86,11 +86,6 @@ const websiteJsonLd = {
     "@type": "Organization",
     name: siteConfig.name,
     url: siteConfig.url
-  },
-  potentialAction: {
-    "@type": "SearchAction",
-    target: `${siteConfig.url}/calculators?q={search_term_string}`,
-    "query-input": "required name=search_term_string"
   }
 };
 
